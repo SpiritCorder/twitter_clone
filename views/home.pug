@@ -1,0 +1,18 @@
+extends layouts/main-layout.pug
+
+block content
+
+    
+
+    +createPostForm(loggedInUser)
+    
+    .postsContainer
+
+    +createDeleteModal()
+    +createReplyModal(loggedInUser)
+
+    +createPinnedPostModal()
+
+
+block scripts
+    script(src="/js/home.js")

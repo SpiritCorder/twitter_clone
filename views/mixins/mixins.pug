@@ -1,0 +1,139 @@
+mixin createPostForm(loggedInUser)
+    .postFormContainer
+        .profilePicContainer
+            img(src=loggedInUser.profilePic, alt="My Profile Picture")
+        .textareaContainer
+            textarea#postContent(placeholder="What's happeing?")
+            button#postBtn(disabled="") Post
+
+mixin createReplyModal(loggedInUser)
+    #replyModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='replyModalLongTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLongTitle.modal-title Reply
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    .replyPostContainer
+                    .postFormContainer
+                        .profilePicContainer
+                            img(src=loggedInUser.profilePic, alt="My Profile Picture")
+                        .textareaContainer
+                            textarea#replyContent(placeholder="What's happeing?")
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    button#replyBtn.btn.btn-primary(type='button' disabled="") Reply
+
+mixin createDeleteModal()
+    #deleteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deleteModalLongTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLongTitle.modal-title Confirmation
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    p Are you sure you want to delete the post?
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                    button#deleteBtn.btn.btn-primary(type='button') Delete
+
+mixin createFollowButton(profileUser, currentStatus)
+    - text = currentStatus ? 'Following' : 'Follow';
+    - buttonClass = currentStatus ? 'followBtn following' : 'followBtn';
+    
+    button(class=buttonClass, user-data=profileUser._id) #{text}
+
+mixin createTab(name, href, isSelected)
+    - className = isSelected ? 'tab active' : 'tab';
+    a(href=href, class=className ) 
+        span #{name}
+
+
+mixin createPicUploadModal()
+    #picUploadModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='picUploadModalLongTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#picUploadModalLongTitle.modal-title Upload Profile Picture
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    input#fileInput(type="file", name="fileInput")
+
+                    .imagePreview
+                        img#imagePreview
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    button#uploadBtn.btn.btn-primary(type='button') Upload
+
+mixin createCoverUploadModal()
+    #coverUploadModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='coverUploadModalLongTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#picUploadModalLongTitle.modal-title Upload Cover Photo
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    input#fileInputCover(type="file", name="fileInput")
+
+                    .imagePreview
+                        img#imagePreviewCover
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    button#uploadCoverBtn.btn.btn-primary(type='button') Upload
+
+mixin createPinnedPostModal()
+    #pinnedPostModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='pinnedPostModalLongTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#pinnedPostModalLongTitle.modal-title Pin Post
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    p This post will appear at the top of your profile. You can only pin one post.
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    button#pinnedPostBtn.btn.btn-primary(type='button') Pin Post
+
+
+mixin createChatImage(chat, loggedInUser)
+
+    - let count = 0
+    - let maxImages = 3
+    - let remainUsers = chat.users.length - maxImages
+    - remainUsers--
+
+    .chatImageContainerChatPage
+
+        if remainUsers > 0
+            .remainUsers
+                span +#{remainUsers}
+
+
+        each user in chat.users
+            if chat.users.length != 1 && user._id == loggedInUser._id
+                - continue
+            else if count >= maxImages
+                - break
+
+            img(src=user.profilePic ,alt="Chat-Image", title="Some Title")
+            - count++
+
+
+mixin createChatNameModal(chat)
+    #chatNameModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='chatNameModalLongTitle', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#chatNameModalLongTitle.modal-title Change Chat Name
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                    input#chatNameValue(type="text", placeholder="Enter a name for chat", value=chat.chatName)
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    button#ChangeChatNameBtn.btn.btn-primary(type='button', disabled="") Change

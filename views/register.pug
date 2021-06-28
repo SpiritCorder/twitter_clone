@@ -1,0 +1,28 @@
+extends layouts/login-layout
+
+block content
+    .loginContainer
+        h1 Register
+        p.text-danger #{errorMessage}
+        form#register(action="/auth/register", method="post", onsubmit="event.preventDefault(); formSubmit();")
+            input(type="text", name="firstName", value=firstName, placeholder="Enter First Name", required="")
+            input(type="text", name="lastName", value=lastName, placeholder="Enter Last Name", required="")
+            input(type="text", name="username", value=username, placeholder="Enter a username", required="")
+            input(type="email", name="email", value=email, placeholder="Enter an email", required="")
+            input#password(type="password", name="password", value=passwrod, placeholder="Enter a password" required="")
+            input#passwordConf(type="password", name="passwordConf", placeholder="Enter the password again" required="")
+            input(type="submit", value="Register")
+        a(href="/auth/login") Have an account? Log In Here
+
+    script.
+        const password = document.getElementById('password');
+        const passwordConf = document.getElementById('passwordConf');
+        const form = document.getElementById('register');
+
+        function formSubmit() {
+            if(password.value !== passwordConf.value) {
+                alert("Passwords do not match!");
+            } else {
+                form.submit();
+            }
+        }

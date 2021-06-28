@@ -1,0 +1,38 @@
+.notificationContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .notificationContainer .notification {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing);
+  border-bottom: 1px solid var(--lightGray);
+}
+
+.notificationContainer .notification.active {
+  background-color: var(--blueBackground);
+  border-bottom: 1px solid rgb(218, 216, 216);
+}
+
+/* .notificationContainer .notification .resultImageContainer {
+  width: 40px;
+  height: 40px;
+} */
+
+/* .notificationContainer .notification .resultImageContainer img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notificationContainer .notification .notificationDetailsContainer {
+  flex: 1;
+  margin: 0 8px;
+}
+
+.markAllAsRead {
+  border: none;
+  background-color: transparent;
+  color: var(--grayText);
+}  */

@@ -1,0 +1,13 @@
+extends layouts/main-layout.pug
+
+
+block content
+    script.
+        const postId = '!{postId}'
+    .postsContainer
+
+    +createReplyModal(loggedInUser)
+
+
+block scripts
+    script(src="/js/postView.js")

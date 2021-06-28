@@ -1,0 +1,74 @@
+.createNewChatContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.searchBoxContainer {
+  display: flex;
+  border-bottom: 1px solid var(--lightGray);
+  align-items: center;
+  min-height: 60px;
+  padding: 10px;
+}
+
+.searchBoxContainer label {
+  margin: 0 10px 0 0;
+  font-weight: 600;
+}
+
+#chatUserSearchContainer {
+  flex: 1;
+}
+
+#chatUsersSearch {
+  min-width: 350px;
+  border: none;
+  font-weight: 200;
+}
+
+.createChat {
+  border: none;
+  background-color: var(--blue);
+  color: #fff;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+.createChat:disabled {
+  background-color: var(--lightGray);
+  color: var(--grayText);
+}
+
+/* User styles */
+
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsContainer .user {
+  padding: var(--spacing);
+  display: flex;
+  border-bottom: 1px solid var(--lightGray);
+  cursor: pointer;
+}
+
+.resultsContainer .user .userDetailsContainer {
+  flex: 1;
+  padding: 0 var(--spacing);
+}
+
+/* selected user styles */
+
+.selectedUser {
+  font-weight: 300;
+  background-color: #cbe5fe;
+  color: #0084ff;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px 5px 0 0;
+  display: inline-block;
+}

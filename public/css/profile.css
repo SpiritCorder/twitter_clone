@@ -1,0 +1,158 @@
+.coverPhotoSection {
+  height: 180px;
+  background-color: var(--blue);
+  position: relative;
+}
+
+.coverPhotoContainer {
+  width: 100.3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 180px;
+}
+
+.coverPhotoContainer img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 180px;
+}
+
+.profileHeaderContainer .profilePicContainer {
+  height: 132px;
+  width: 132px;
+  margin-left: var(--spacing);
+  position: absolute;
+  bottom: -66px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileHeaderContainer .profilePicContainer img {
+  border: 4px solid #fff;
+}
+
+.profileHeaderContainer .profileButtonContainer {
+  text-align: right;
+  padding: var(--spacing);
+  min-height: 66px;
+}
+
+.profileBtn,
+.followBtn {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 60px;
+  display: inline-block;
+  margin-left: var(--spacing);
+}
+
+.profileBtn:hover,
+.followBtn:hover {
+  background-color: var(--blueBackground);
+}
+
+.followBtn.following {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.profileHeaderContainer .profileUserDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--spacing);
+}
+
+.profileHeaderContainer .followDataContainer .value {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.profileHeaderContainer .followDataContainer span:not(.value) {
+  color: var(--grayText);
+}
+
+.profileHeaderContainer .followDataContainer a {
+  margin-right: 15px;
+}
+
+/* pinned post styles */
+.pinnedPostContainer {
+  width: 100%;
+  border-bottom: 10px inset var(--lightGray);
+  visibility: hidden;
+}
+
+.pinnedPostContainer.visible {
+  visibility: visible;
+}
+
+/* user styles */
+.followDataContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.followDataContainer .user {
+  padding: var(--spacing);
+  display: flex;
+  border-bottom: 1px solid var(--lightGray);
+}
+
+.followDataContainer .user .userDetailsContainer {
+  flex: 1;
+  padding: 0 var(--spacing);
+}
+
+.noFollowData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+/* profile pic button */
+.profilePicButton {
+  position: absolute;
+  font-size: 50px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  border: none;
+  display: none;
+}
+
+.profileHeaderContainer .profilePicContainer:hover .profilePicButton {
+  display: block;
+}
+
+.coverPicButton {
+  position: absolute;
+  display: none;
+  font-size: 50px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  border: none;
+}
+
+.profileHeaderContainer .coverPhotoContainer:hover .coverPicButton {
+  display: block;
+}
+
+#imagePreview {
+  width: 100%;
+  display: block;
+
+  max-width: 100%;
+}
+
+#imagePreviewCover {
+  width: 100%;
+  display: block;
+  max-width: 100%;
+}

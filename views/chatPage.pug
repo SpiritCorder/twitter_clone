@@ -1,0 +1,32 @@
+extends layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/chat.css")
+
+block content
+    script.
+        const chatId = '!{chat._id}'
+
+
+    .chatPageContainer
+        .chatPageHeader
+            +createChatImage(chat, loggedInUser)
+            span#chatName(data-target='#chatNameModal', data-toggle='modal') #{chat.chatName}
+        
+        .chatPageContent
+            .chatContainer
+                ul.chatMessages
+
+                .typingIndicator
+                    img(src="/images/typing1.gif", alt="Typing")
+                    
+                .footer
+                    input#messageContent(type="text", placeholder="Type a message...")
+                    button#sendMessageBtn(disabled="") 
+                        i.fas.fa-paper-plane
+
+    +createChatNameModal(chat)
+
+
+block scripts
+    script(src="/js/chat.js")

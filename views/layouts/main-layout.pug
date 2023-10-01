@@ -14,9 +14,10 @@ html(lang="en")
 
     body
         script.
-            let authUser = '!{loggedInUser}'
+            let authUser = '!{loggedInUserJs}'
+            authUser = JSON.parse(authUser)
         .wrapper
-            .row
+            .row.mainLayoutContainer
                 nav.col-2
                     a.blue(href="/")
                         i.fas.fa-dove

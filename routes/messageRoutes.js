@@ -30,6 +30,8 @@ router.get('/:id', async (req, res, next) => {
     const chatId = req.params.id;
     const userId = req.session.user._id;
 
+    
+
     let chat = await ChatSchema.findOne({_id: chatId, users: {$elemMatch: {$eq: userId}}});
 
     chat = await UserSchema.populate(chat, {path: 'users'})

@@ -11,6 +11,8 @@ block content
         i.fas.fa-search
         input#searchInput(type="text", name="searchVal", placeholder="Search for users and posts")
 
+    +createReplyModal(loggedInUser)
+
     .tabsContainer
         +createTab('Posts', `/search/posts`, selectedTab != 'users')
         +createTab('Users', `/search/users`, selectedTab == 'users')

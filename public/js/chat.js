@@ -145,7 +145,10 @@ function scrollBottom() {
 
 function createMessageHtml(message) {
 
-    const isMine = message.sender._id == authUser._id;
+    console.log(message);
+   console.log(authUser)
+
+    const isMine = message.sender._id.toString() == authUser._id;
     const liClass = isMine ? "mine" : "theirs"
 
     let imageContainer = ""
@@ -225,6 +228,9 @@ function sendMessage(content) {
         renderMessagesToPage(html)
 
         if(connected) {
+
+            console.log(message)
+
             socket.emit('new message', message)
         }
 
@@ -310,15 +316,21 @@ messageInput.addEventListener('keyup', e => {
     }
 });
 
-
+// handle message send button click
 messageBtn.addEventListener('click', e => {
     handleMessage()
 })
 
 document.addEventListener('DOMContentLoaded', () => {
     socket.emit('join room', chatId)
-    socket.on('typing', () => addTypingIndicator())
+    socket.on('typing', () => {
+    
+        addTypingIndicator()
+    
+    })
     socket.on('stop typing', () => removeTypingIndicator())
+
+   
 
     handleChatName()
     fetchMessages()

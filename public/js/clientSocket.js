@@ -2,7 +2,9 @@ let connected = false;
 
 console.log(window.location.host);
 
-let socket = io(`https://${window.location.host}`)
+let socket = io(`http://${window.location.host}`)
+
+console.log(authUser)
 
 socket.emit('setUp', authUser)
 
@@ -10,6 +12,8 @@ socket.emit('setUp', authUser)
 socket.on('connected', () => connected = true)
 
 socket.on('message received', newMessage => {
+
+    console.log("Message received successfully " + newMessage);
     
     receivedMessageHandler(newMessage)
 })

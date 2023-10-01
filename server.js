@@ -53,12 +53,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 // Body parser middleware
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 // secure http headers with helmet
 app.use(helmet());
-app.use(compression())
+app.use(compression());
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 
@@ -103,7 +103,7 @@ app.get("/", auth, (req, res, next) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 const server = app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
 
@@ -119,18 +119,28 @@ io.on("connection", socket => {
     })
 
     socket.on('join room', room => socket.join(room))
-    socket.on('typing', room => socket.in(room).emit('typing'))
+    socket.on('typing', room => {
+
+        socket.in(room).emit('typing')
+    })
     socket.on('stop typing', room => socket.in(room).emit('stop typing'))
     
     
     socket.on('new message', message => {
+
+        console.log("New message has received... " + message);
+
         if(!message.chat.users) return console.log('no users data')
 
-        message.chat.users.forEach(obj => {
-            if(obj._id == message.sender._id) return;
+        socket.to(message.chat._id).emit('message received', message);
 
-            socket.in(obj._id).emit('message received', message)
-        })
+        // message.chat.users.forEach(obj => {
+        //     if(obj._id == message.sender._id) return;
+
+        //     console.log(obj._id, " " , message.sender._id);
+
+        //     socket.to(obj._id).emit('message received', message)
+        // })
     })
 
     socket.on("notification received", userId => {

@@ -51,6 +51,12 @@ a:hover {
   height: 100%;
 }
 
+.mainLayoutContainer {
+  position: relative;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
 .row {
   height: 100%;
 }
@@ -60,6 +66,9 @@ nav {
   flex-direction: column;
   align-items: flex-end;
   height: 100%;
+  position: sticky !important;
+  left: 0;
+  top: 0;
 }
 
 nav > a {
